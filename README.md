@@ -83,3 +83,14 @@ gcc Project.c -o Project
 ```bash
 ./Project
 ```
+
+## Screenshots
+
+### Game Start
+![Game Start](Images/Img%201.png)
+
+### Number Selection
+![Selecting Number](Images/Img%202.png)
+
+### Gameplay
+![Gameplay](Images/Img%203.png)
