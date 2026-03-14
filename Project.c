@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <ctype.h>
 
 // CROSS-PLATFORM SLEEP FUNCTION
 #ifdef _WIN32
