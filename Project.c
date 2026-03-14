@@ -18,7 +18,7 @@ void color(int c);
 void p_line(const char *line, float seconds);
 int select_number(int level);
 void restart_spining();
-void exit_spining()
+void exit_spining();
 
 // MAIN FUNCTION
 int main() {
@@ -133,7 +133,114 @@ int main() {
             color(11);
             p_line("\n====================================\n", 0.1);
         }
+
+        do
+        {
+            color(11);
+            p_line("\n=> Enter your guess:  ", 0.1);
+
+            int guess;
+
+            color(15);
+            if ((scanf("%d", &guess) != 1) || guess < 1 || guess > (difficulty == 1 ? 50 : (difficulty == 2 ? 100 : 500)))
+            {
+                color(12);
+                p_line("\n\t\tInvalid input!\nPlease enter a valid number within the specified range.\n", 0.5);
+
+                while (getchar() != '\n')
+                    ;
+                continue;
+            }
+            else if (guess == selected_number)
+            {
+                color(10);
+                p_line("\n========================================\n", 0.1);
+                p_line("Congratulations! You guessed the number!", 0.1);
+                p_line("\n========================================\n\n", 0.1);
+                break;
+            }
+            else if (guess < selected_number)
+            {
+                color(14);
+                p_line("\nToo low! Try again.\n", 0.1);
+                attempts++;
+
+                while (getchar() != '\n')
+                    ;
+
+                if (attempts >= max_attempts[difficulty - 1])
+                {
+                    color(12);
+                    p_line("\n========================================\n", 0.1);
+                    p_line("Game Over! You've used all your attempts", 0.1);
+                    p_line("\n========================================\n\n", 0.1);
+                    
+                    color(10);
+                    printf("  ---| The correct number was: %d |---\n\n", selected_number);
+                    break;
+                }
+
+                printf("Attempts left: %d\n", max_attempts[difficulty - 1] - attempts);
+                continue;
+            }
+            else
+            {
+                color(12);
+                p_line("\nToo high! Try again.\n", 0.1);
+                attempts++;
+
+                while (getchar() != '\n')
+                    ;
+
+                if (attempts >= max_attempts[difficulty - 1])
+                {
+                    color(12);
+                    p_line("\n========================================\n", 0.1);
+                    p_line("Game Over! You've used all your attempts", 0.1);
+                    p_line("\n========================================\n\n", 0.1);
+                    
+                    color(10);
+                    printf("  ---| The correct number was: %d |---\n\n", selected_number);
+                    break;
+                }
+
+                printf("Attempts left: %d\n", max_attempts[difficulty - 1] - attempts);
+                continue;
+            }
+
+        } while (1);
+
+        color(11);
+        p_line("Do you want to play again? (Y/N): ", 0.1);
+        scanf(" %c", &restart);
+        restart = toupper(restart);
+
+        if(restart == 'N')
+        {
+            color(14);
+            p_line("\n\tThank you for playing!\n\n", 0.1);
+            exit_spining();
+            break;
+        }
+        else if (restart == 'Y')
+        {
+            color(14);
+            restart_spining();
+            continue;
+        }
+        else
+        {
+            color(12);
+            p_line("\n\t\tInvalid input!\n\n", 0.5);
+            p_line("\t\t ", 0.5);
+            exit_spining();
+            color(15);
+            break;
+        }
+
     } while (restart == 'Y');
+
+    color(15);
     return 0;
 }
 
