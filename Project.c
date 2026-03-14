@@ -15,6 +15,7 @@ void sleep_ms(int ms) { usleep(ms * 1000); }
 // FUNTIONS PROTOTYPES
 void gotoxy(int x, int y);
 void color(int c);
+void p_line(const char *line, float seconds);
 
 // MAIN FUNCTION
 int main() {
@@ -151,4 +152,26 @@ void color(int c)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
     // 11 ==> cyan, 12 ==> red, 10 ==> green, 14 ==> yellow, 15 ==> white
+}
+
+// =========================PRINT LINE WITH TYPEWRITER EFFECT=========================
+
+void p_line(const char *line, float seconds)
+{
+    int len = strlen(line);
+    if (len == 0 || seconds <= 0)
+        return;
+
+    int total_ms = (int)(seconds * 1000);
+    int delay_step = 3; // delay after every 3 characters
+    int per_delay = total_ms / (len / delay_step + 1);
+
+    for (int i = 0; line[i] != '\0'; i++)
+    {
+        putchar(line[i]);
+        fflush(stdout);
+
+        if (i % delay_step == 0) // delay less often
+            sleep_ms(per_delay);
+    }
 }
