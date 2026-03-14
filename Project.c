@@ -14,6 +14,7 @@ void sleep_ms(int ms) { usleep(ms * 1000); }
 
 // FUNTIONS PROTOTYPES
 void gotoxy(int x, int y);
+void color(int c);
 
 // MAIN FUNCTION
 int main() {
@@ -142,4 +143,12 @@ void gotoxy(int x, int y)
     coord.X = x;
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+// =========================SET CONSOLE TEXT COLOR=========================
+
+void color(int c)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
+    // 11 ==> cyan, 12 ==> red, 10 ==> green, 14 ==> yellow, 15 ==> white
 }
