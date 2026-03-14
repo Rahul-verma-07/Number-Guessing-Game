@@ -16,6 +16,7 @@ void sleep_ms(int ms) { usleep(ms * 1000); }
 void gotoxy(int x, int y);
 void color(int c);
 void p_line(const char *line, float seconds);
+int select_number(int level);
 
 // MAIN FUNCTION
 int main() {
@@ -174,4 +175,38 @@ void p_line(const char *line, float seconds)
         if (i % delay_step == 0) // delay less often
             sleep_ms(per_delay);
     }
+}
+
+// =========================SELECT A RANDOM NUMBER WITH ANIMATION=========================
+
+int select_number(int level)
+{
+    int max_range, true_number;
+
+    printf("\n");
+
+    // SET MAX RANGE BASED ON DIFFICULTY
+    if (level == 1)
+        max_range = 50;
+    else if (level == 2)
+        max_range = 100;
+    else
+        max_range = 500;
+
+    srand(time(0));
+    true_number = rand() % max_range + 1;
+
+    char spin[] = {'|', '/', '-', '\\'};
+
+    for (int i = 0; i < 20; i++)
+    {
+        printf("\rSelecting number... %c", spin[i % 4]);
+        fflush(stdout);
+        sleep_ms(100);
+    }
+
+    color(10);
+    printf("\rSelecting number... Complete!     \n");
+
+    return true_number;
 }
