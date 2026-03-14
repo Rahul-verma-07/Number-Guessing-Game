@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>
 #include <time.h>
@@ -22,7 +22,8 @@ void restart_spining();
 void exit_spining();
 
 // MAIN FUNCTION
-int main() {
+int main()
+{
     char restart;
 
     do
@@ -175,7 +176,7 @@ int main() {
                     p_line("\n========================================\n", 0.1);
                     p_line("Game Over! You've used all your attempts", 0.1);
                     p_line("\n========================================\n\n", 0.1);
-                    
+
                     color(10);
                     printf("  ---| The correct number was: %d |---\n\n", selected_number);
                     break;
@@ -199,7 +200,7 @@ int main() {
                     p_line("\n========================================\n", 0.1);
                     p_line("Game Over! You've used all your attempts", 0.1);
                     p_line("\n========================================\n\n", 0.1);
-                    
+
                     color(10);
                     printf("  ---| The correct number was: %d |---\n\n", selected_number);
                     break;
@@ -216,7 +217,7 @@ int main() {
         scanf(" %c", &restart);
         restart = toupper(restart);
 
-        if(restart == 'N')
+        if (restart == 'N')
         {
             color(14);
             p_line("\n\tThank you for playing!\n\n", 0.1);
