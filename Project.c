@@ -18,6 +18,7 @@ void color(int c);
 void p_line(const char *line, float seconds);
 int select_number(int level);
 void restart_spining();
+void exit_spining()
 
 // MAIN FUNCTION
 int main() {
@@ -231,3 +232,20 @@ void restart_spining()
     printf("\rRestarting Game... Complete!     \n");
 }
 
+// =========================EXIT GAME ANIMATION=========================
+void exit_spining()
+{
+    char spin[] = {'|', '/', '-', '\\'};
+
+    printf("\t");
+
+    for (int i = 0; i < 20; i++)
+    {
+        printf("\rExiting Game... %c", spin[i % 4]);
+        fflush(stdout);
+        sleep_ms(100);
+    }
+
+    color(10);
+    printf("\rExiting Game... Complete!     \n");
+}
