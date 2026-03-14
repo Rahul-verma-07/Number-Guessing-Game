@@ -17,6 +17,7 @@ void gotoxy(int x, int y);
 void color(int c);
 void p_line(const char *line, float seconds);
 int select_number(int level);
+void restart_spining();
 
 // MAIN FUNCTION
 int main() {
@@ -210,3 +211,23 @@ int select_number(int level)
 
     return true_number;
 }
+
+// =========================RESTART GAME ANIMATION=========================
+
+void restart_spining()
+{
+    char spin[] = {'|', '/', '-', '\\'};
+
+    printf("\n");
+
+    for (int i = 0; i < 20; i++)
+    {
+        printf("\rRestarting Game... %c", spin[i % 4]);
+        fflush(stdout);
+        sleep_ms(100);
+    }
+
+    color(10);
+    printf("\rRestarting Game... Complete!     \n");
+}
+
